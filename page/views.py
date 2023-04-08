@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def InputView(request):
+    return render(request, 'input.html')
