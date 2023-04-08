@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'TheJamsil5Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-family: 'GangwonEduSaeeum_OTFMediumA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -8,12 +8,13 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    font-family: 'TheJamsil5Bold';
+    font-family: 'GangwonEduSaeeum_OTFMediumA';
+    line-height: 1.5;
 }
 
 header{
     height: 40px;
-    padding: 10px 0 0 0;
+    padding: 8px 0 0 0;
     background-color: skyblue;
     text-align: center;
 }
@@ -23,7 +24,7 @@ body {
 }
 
 main {
-    height: 700px;
+    height: 100%;
     width: 750px;
     background-color: #f8f8f8;
     padding: 2rem;

@@ -15,37 +15,59 @@
     <main>
         <form action="/submit" method="post">
             {% csrf_token %}
+
             <div class="form-group">
-                <label for="budget">생각하고 계시는 여행의 총 경비를 알려주세요</label>
-                <input type="text" id="budget" name="budget" required>
+                <label for="budget">몇 월에 가고 싶은가요?</label>
+                <input type="text" id="month" name="month" required>
             </div>
 
             <div class="form-group">
-                <label for="duration">여행을 몇 박 며칠로 가실 건가요?</label>
+                <label for="duration">몇 박 며칠로 가실 건가요?</label>
                 <select id="duration" name="duration">
-                    <option value="1">당일치기</option>
-                    <option value="2">2박 3일</option>
-                    <option value="3">3박 4일</option>
-                    <option value="4">4박 5일</option>
-                    <option value="5">5박 6일</option>
-                    <option value="6">6박 7일</option>
-                    <option value="7">7박 8일</option>
-                    <option value="8">8박 9일</option>
-                    <option value="9">9박 10일</option>
+                    <option value="당일치기">당일치기</option>
+                    <option value="2박3일">2박 3일</option>
+                    <option value="3박4일">3박 4일</option>
+                    <!-- <option value="4박5일">4박 5일</option>
+                    <option value="5박6일">5박 6일</option>
+                    <option value="6박7일">6박 7일</option> -->
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="keyword">여행 키워드를 알려주세요!</label>
+                <label for="budget">생각하고 있는 여행의 총 경비를 알려주세요</label>
+                <input type="text" id="budget" name="budget" required>
+            </div>
+
+            <div class="form-group">
+                <label for="budget">어디로 가고싶으신가요? 나라와 지역을 입력해주세요. (추천받고 싶다면 비워주세요!)</label>
+                <input type="text" id="where" name="where">
+            </div>
+
+            <div class="form-group">
+                <label for="keyword">본인의 관심사나, 여행 키워드를 알려주세요!</label>
                 <input type="text" id="keyword" name="keyword" required>    
             </div>
 
             <div class="form-group">
-                <label for="purpose">여행 목적을 알려주세요</label>
+                <label for="purpose">
+                    여행 목적을 알려주세요 (예: 휴양, 문화체험, 자연 경관 감상, 음식 탐방, 축제 참여 등)
+                </label>
                 <input type="text" id="purpose" name="purpose" required>                  
             </div>
 
-            <button type="submit">제출</button>
+            <div class="form-group">
+                <label for="accompany">여행을 누구랑 가시나요?</label>
+                <select id="accompany" name="accompany">
+                    <option value="혼자">혼자</option>
+                    <option value="애인">애인</option>
+                    <option value="가족">가족</option>
+                    <option value="친구">친구</option>
+                    <option value="비즈니스">비즈니스</option>
+                </select>   
+            </div>
+
+
+            <button type="submit">여행지 추천받기!</button>
         </form>
     </main>
 
