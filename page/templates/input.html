@@ -2,27 +2,55 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>여행 정보 입력</title>
-  <link rel="stylesheet" href="{% static 'css/input.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여행 정보 입력</title>
+    <link rel="stylesheet" href="{% static 'css/input.css' %}">
 </head>
 <body>
-  <h1>여행 정보 입력</h1>
-  <form action="/submit" method="post">
-    <label for="budget">여행 예산:</label>
-    <input type="number" id="budget" name="budget" required><br><br>
+    <header>
+        여행 정보 입력
+    </header>
 
-    <label for="duration">여행 기간:</label>
-    <input type="number" id="duration" name="duration" required><br><br>
+    <main>
+        <form action="/submit" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="budget">생각하고 계시는 여행의 총 경비를 알려주세요</label>
+                <input type="text" id="budget" name="budget" required>
+            </div>
 
-    <label for="keyword">여행 키워드:</label>
-    <input type="text" id="keyword" name="keyword" required><br><br>
+            <div class="form-group">
+                <label for="duration">여행을 몇 박 며칠로 가실 건가요?</label>
+                <select id="duration" name="duration">
+                    <option value="1">당일치기</option>
+                    <option value="2">2박 3일</option>
+                    <option value="3">3박 4일</option>
+                    <option value="4">4박 5일</option>
+                    <option value="5">5박 6일</option>
+                    <option value="6">6박 7일</option>
+                    <option value="7">7박 8일</option>
+                    <option value="8">8박 9일</option>
+                    <option value="9">9박 10일</option>
+                </select>
+            </div>
 
-    <label for="purpose">여행 목적:</label>
-    <textarea id="purpose" name="purpose" rows="4" cols="50" required></textarea><br><br>
+            <div class="form-group">
+                <label for="keyword">여행 키워드를 알려주세요!</label>
+                <input type="text" id="keyword" name="keyword" required>    
+            </div>
 
-    <button type="submit">제출</button>
-  </form>
+            <div class="form-group">
+                <label for="purpose">여행 목적을 알려주세요</label>
+                <input type="text" id="purpose" name="purpose" required>                  
+            </div>
+
+            <button type="submit">제출</button>
+        </form>
+    </main>
+
+    <footer>
+        Copyright © 2023 서강대학교 윤태호. All right Reserved.
+    </footer>
 </body>
 </html>
