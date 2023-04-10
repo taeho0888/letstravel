@@ -6,6 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Let's Travel</title>
     <link rel="stylesheet" href="{% static 'css/input.css' %}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let ws_scheme = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
+            let websocket = new WebSocket(ws_scheme + window.location.host + '/ws/chat/');
+
+            websocket.onopen = function() {
+                console.log('WebSocket is connected.');
+            };
+
+            websocket.onmessage = function(e) {
+                let data = JSON.parse(e.data);
+                let answer = data['answer'];
+                if (answer) {
+                    let answerElement = document.createElement('div');
+                    answerElement.innerHTML = `<p>${answer}</p>`;
+                    document.querySelector('#answer-container').appendChild(answerElement);
+                }
+            };
+
+            websocket.onerror = function(error) {
+                console.error('WebSocket error:', error);
+            };
+
+            websocket.onclose = function() {
+                console.log('WebSocket is closed.');
+            };
+            
+            document.querySelector('#send-button').onclick = function() {
+                let userId = document.querySelector('#user-id').value;
+                websocket.send(JSON.stringify(userId));
+            };
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -13,33 +46,15 @@
     </header>
 
     <main>
-        <table>
-            <thead>
-              <tr>
-                <th>일차</th>
-                <th>시간</th>
-                <th>장소</th>
-                <th>활동</th>
-                <th>예상경비</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for day, schedule in result.items %}
-              {% for time, activity in schedule.items %}
-              <tr>
-                {% if forloop.first %}
-                <td rowspan="{{ schedule|length }}">{{ day }}</td>
-                {% endif %}
-                <td>{{ time }}</td>
-                <td>{{ activity.장소 }}</td>
-                <td>{{ activity.활동 }}</td>
-                <td>{{ activity.예상경비 }}</td>
-              </tr>
-              {% endfor %}
-              {% endfor %}
-            </tbody>
-          </table>    
-        </main>
+        <div>
+            <label for="user-id">User ID:</label>
+            <p id="user-id">{{ id }}</p>
+            <button id="send-button">Get Recommendation</button>
+        </div>
+        <div id="answer-container">
+            <!-- The answer will be displayed here -->
+        </div>
+    </main>
 
     <footer>
         Copyright © 2023 서강대학교 윤태호. All right Reserved.
